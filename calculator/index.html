@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+
+</head>
+<body>
+    <div class="calculator">
+        <h1>Calculator</h1>
+        <input type="text" id="result" disabled>
+        <div class="buttons">
+            <button class="operator" onclick="appendToDisplay('/')">/</button>
+            <button class="operator" onclick="appendToDisplay('*')">*</button>
+            <button class="operator" onclick="appendToDisplay('-')">-</button>
+            <button class="operator" onclick="appendToDisplay('+')">+</button>
+            <button class="digit" onclick="appendToDisplay('9')">9</button>
+            <button class="digit" onclick="appendToDisplay('8')">8</button>
+            <button class="digit" onclick="appendToDisplay('7')">7</button>
+            <button class="digit" onclick="appendToDisplay('6')">6</button>
+            <button class="digit" onclick="appendToDisplay('5')">5</button>
+            <button class="digit" onclick="appendToDisplay('4')">4</button>
+            <button class="digit" onclick="appendToDisplay('3')">3</button>
+            <button class="digit" onclick="appendToDisplay('2')">2</button>
+            <button class="digit" onclick="appendToDisplay('1')">1</button>
+            <button class="digit" onclick="appendToDisplay('0')">0</button>
+            <button class="digit" onclick="appendToDisplay('.')">.</button>
+            <button class="equal" onclick="calculateResult()">=</button>
+            <button class="clear" onclick="clearLast()">C</button>
+            <button class="clear" onclick="clearDisplay()">AC</button>
+        </div>
+    </div>
+
+    <script>
+        let displayValue = '';
+
+        function appendToDisplay(value) {
+            displayValue += value;
+            document.getElementById('result').value = displayValue;
+        }
+
+        function clearLast() {
+            displayValue = displayValue.slice(0, -1);
+            document.getElementById('result').value = displayValue;
+        }
+
+        function clearDisplay() {
+            displayValue = '';
+            document.getElementById('result').value = '';
+        }
+
+        function calculateResult() {
+            try {
+                const result = eval(displayValue);
+                displayValue = result.toString();
+                document.getElementById('result').value = displayValue;
+            } catch (error) {
+                displayValue = 'Error';
+                document.getElementById('result').value = displayValue;
+            }
+        }
+    </script>
+</body>
+</html>
